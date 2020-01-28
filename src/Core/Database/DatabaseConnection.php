@@ -21,7 +21,9 @@ class DatabaseConnection extends Config
             $password = "password";
             try {
                 self::$connection = new PDO("mysql:host=$servername;dbname=kago_blog", $username, $password);
-                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+//                $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+
             }
             catch(PDOException $e)
             {

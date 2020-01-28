@@ -25,7 +25,7 @@
                         <p><?=$post['body'] ?></p>
                         <hr />
 
-                        <h3>4 comments</h3>
+<!--                      Disqus  Area-->
                         <div id="disqus_thread"></div>
 
 

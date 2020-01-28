@@ -48,9 +48,31 @@ class Database
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function update(){
+    public function update($table, $id, $data){
+        $columns = array_keys($data);
+        $values = array_values($data);
+
+        $columnsToUpdate = [];
+
+        foreach ($columns as $column){
+           array_push($columnsToUpdate, $column.'=?');
+        }
+
+        $columnsToUpdate = implode(',', $columnsToUpdate);
+
+
+        $id = (int)$id;
+
+        $sql = "UPDATE $table SET $columnsToUpdate where id = $id";
+        $stmt = $this->DB->prepare($sql);
+        $stmt->execute($values);
+        print $stmt->rowCount();
+
 
     }
+
+
+
 
     public function delete($table, $id){
         $stmt = $this->DB->prepare("DELETE from $table WHERE id =?");

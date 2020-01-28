@@ -7,7 +7,7 @@
     <meta name="description" content="Responsive Bootstrap 4 Magazine/Blog Theme">
     <meta name="author" content="Bootlab">
 
-    <title><?=$title?></title>
+    <title>Milo - Magazine/Blog Theme</title>
 
     <link href="/css/app.css" rel="stylesheet">
 </head>

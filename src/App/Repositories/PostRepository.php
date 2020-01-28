@@ -30,4 +30,12 @@ class PostRepository extends Database
     public function deletePost($id){
         return $this->delete('posts', $id);
     }
+
+
+    public function updatePost($id, $data){
+
+
+        $this->update('posts', $id, $data);
+
+    }
 }
