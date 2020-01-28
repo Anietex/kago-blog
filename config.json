@@ -1,6 +1,8 @@
 {
-  "DB_HOST": "localhost",
-  "DB_USER": "root",
-  "DB_PASSWORD": "password",
-  "DB_NAME": "kago_blog"
+  "database": {
+    "host": "localhost",
+    "user": "root",
+    "password": "password",
+    "database": "kago_blog"
+  }
 }

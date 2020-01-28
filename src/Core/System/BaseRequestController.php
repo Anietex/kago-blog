@@ -2,7 +2,7 @@
 
 namespace Kago\Core\System;
 
-abstract class BaseRequestController
+abstract class BaseRequestController extends Config
 {
     public  function loadView(string $view, array $data = []){
         extract($data);

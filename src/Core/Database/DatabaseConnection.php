@@ -4,10 +4,11 @@
 namespace Kago\Core\Database;
 
 
+use Kago\Core\System\Config;
 use PDO;
 use PDOException;
 
-class DatabaseConnection
+class DatabaseConnection extends Config
 {
 
     private static $connection = null;
@@ -31,6 +32,9 @@ class DatabaseConnection
 
         return self::$connection;
     }
+
+
+
 
 
 
