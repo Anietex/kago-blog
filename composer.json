@@ -1,0 +1,16 @@
+{
+    "name": "aniefon/kago-blog",
+    "authors": [
+        {
+            "name": "Aniefon Umanah",
+            "email": "aniefon.umanah@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kago\\Core\\": "src/core",
+            "Kago\\App\\": "core/app"
+        }
+    },
+    "require": {}
+}
