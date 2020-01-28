@@ -5,6 +5,7 @@ namespace Kago\App\Controllers;
 
 
 use Kago\App\Repositories\PostRepository;
+use Kago\App\Utils\FileUploader;
 use Kago\Core\System\BaseRequestController;
 
 class PostController extends BaseRequestController
@@ -31,24 +32,36 @@ class PostController extends BaseRequestController
     }
 
 
-    public function createPost(){
+    public function createPost()
+    {
+        $fileUploader = new FileUploader('post_image');
 
-        if($this->postFormIsValid()){
+        $fileUploader->setAllowedFileTypes(['jpg', 'png']);
+        $fileUploader->setMaxFileSize(2000000);
+        $fileUploader->setFilename(slugify($_REQUEST['title']));
+        $fileUploader->setUploadDirectory('/' . $_SERVER['DOCUMENT_ROOT'] . '/posts');
 
+
+        if ($this->postFormIsValid($fileUploader)) {
+
+            try{
+                $fileUploader->uploadFile();
+            }catch (\Exception $exception){
+                $_SESSION['errors']['post_image'] = $exception->getMessage();
+            }
             $post = $this->postRepository->createPost([
                 "title" => $_REQUEST['title'],
                 "body" => $_REQUEST['body'],
-                "slug" => slugify($_REQUEST['title'])
+                "slug" => slugify($_REQUEST['title']),
+                'post_image' => $fileUploader->getUploadFileName()
             ]);
 
-           if($post){
-               $_SESSION['success'] = "Post was created successfully";
-               return $this->redirect('/admin/post/create');
-           }
-
-
-        }else{
-            $this->redirect('/admin/post/create');
+            if ($post) {
+                $_SESSION['success'] = "Post was created successfully";
+                return $this->redirect('/admin/post/create');
+            } else {
+                $this->redirect('/admin/post/create');
+            }
         }
     }
 
@@ -60,7 +73,7 @@ class PostController extends BaseRequestController
     }
 
 
-    private function postFormIsValid(){
+    private function postFormIsValid(FileUploader $uploader){
 
         $errors = [];
 
@@ -75,6 +88,17 @@ class PostController extends BaseRequestController
         if(empty($_REQUEST['body'])){
             $errors['body'] = 'Post body is required';
         }
+
+
+
+        if(empty($_FILES['post_image'])){
+            $errors['post_image'] = "A post  image is required";
+        }else{
+            if(!$uploader->isValidFileType()){
+                $errors['post_image'] = "Only Images are allowed";
+            }
+        }
+
 
 
         if(count($errors) !== 0){

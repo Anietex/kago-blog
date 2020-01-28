@@ -5,6 +5,7 @@ namespace Kago\App\Utils;
 
 
 use Exception;
+use SplFileInfo;
 
 class FileUploader
 {
@@ -18,9 +19,9 @@ class FileUploader
 
     public function __construct($inputName)
     {
-        if(empty($_FILES[$inputName])){
-            throw new Exception("File Is not uploaded");
-        }
+//        if(empty($_FILES[$inputName])){
+//            throw new Exception("File Is not uploaded");
+//        }
         $this->inputName = $inputName;
         $this->fileName = uniqid('', true).'.'.$this->getFileExtension();
     }
@@ -51,9 +52,13 @@ class FileUploader
 
     protected function upload(){
 
-        $destination = trim( $this->uploadDirectory,'/').'/'.$this->fileName;
+        $destination = $this->uploadDirectory.'/'.$this->fileName;
         return move_uploaded_file($this->getTempFilename(),$destination);
 
+    }
+
+    public function getUploadFileName(){
+        return $this->fileName;
     }
 
 
@@ -110,6 +115,6 @@ class FileUploader
     }
 
     public function setFilename($name){
-        $this->fileName = $name;
+        $this->fileName = $name.'.'.$this->getFileExtension();
     }
 }
