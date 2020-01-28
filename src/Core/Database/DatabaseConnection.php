@@ -8,19 +8,24 @@ use Kago\Core\System\Config;
 use PDO;
 use PDOException;
 
-class DatabaseConnection extends Config
+class DatabaseConnection
 {
 
     private static $connection = null;
 
     static function getConnection(){
+        $config = new Config();
+
+        $dbConfig =  $config->getConfig('database');
+
         if(self::$connection == null){
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "password";
+            $servername = $dbConfig->host;
+            $username = $dbConfig->user;
+            $password = $dbConfig->password;
+            $dbName = $dbConfig->database;
             try {
-                self::$connection = new PDO("mysql:host=$servername;dbname=kago_blog", $username, $password);
+                self::$connection = new PDO("mysql:host=$servername;dbname=$dbName", $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 //                $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
