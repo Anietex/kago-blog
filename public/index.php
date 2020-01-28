@@ -1,3 +1,8 @@
 <?php
+use Kago\Core\System;
 
-print 'Home';
+require '../vendor/autoload.php';
+require '../src/App/routes.php';
+
+$system = new System();
+$system->boot();

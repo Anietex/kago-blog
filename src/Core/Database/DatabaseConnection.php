@@ -16,10 +16,10 @@ class DatabaseConnection
         if(self::$connection == null){
 
             $servername = "localhost";
-            $username = "aniefon";
-            $password = "";
+            $username = "root";
+            $password = "password";
             try {
-                self::$connection = new PDO("mysql:host=$servername;dbname=object_blog", $username, $password);
+                self::$connection = new PDO("mysql:host=$servername;dbname=kago_blog", $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             catch(PDOException $e)

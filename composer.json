@@ -8,8 +8,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Kago\\Core\\": "src/core",
-            "Kago\\App\\": "core/app"
+            "Kago\\Core\\": "src/Core",
+            "Kago\\App\\": "src/App"
         }
     },
     "require": {}
