@@ -1,3 +1,22 @@
 .admin-login-form{
     margin-top: 50px;
 }
+
+.navbar{
+    background: #00BCD4;
+    color: #fff;
+}
+
+.page-title{
+    background: #BDBDBD;
+    color: #ffffff;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.list-group-item.active{
+    background: #00BCD4;
+    border-color: #00BCD4;
+}
