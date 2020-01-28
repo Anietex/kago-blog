@@ -13,6 +13,7 @@ class PostController extends BaseRequestController
 {
 
     private $postRepository;
+    private $auth;
 
     public function __construct()
     {
@@ -22,10 +23,16 @@ class PostController extends BaseRequestController
 
     public function showCreatePost(){
 
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
         $this->loadView('admin/pages/create-post');
     }
 
     public function showManagePost(){
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
 
         $data['posts'] = $this->postRepository->getAllPosts();
         $this->loadView('admin/pages/manage-post', $data);
@@ -35,6 +42,11 @@ class PostController extends BaseRequestController
 
     public function createPost()
     {
+
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
+
         $fileUploader = new FileUploader('post_image');
 
         $fileUploader->setAllowedFileTypes(['jpg', 'png']);
@@ -68,6 +80,9 @@ class PostController extends BaseRequestController
 
 
     public function updatePost($id){
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
 
         $post = $this->postRepository->getPostById($id);
 
@@ -124,11 +139,18 @@ class PostController extends BaseRequestController
 
 
     public function editPost($id){
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
         $post = $this->postRepository->getPostById($id);
         $this->loadView('admin/pages/edit-post', ['post' => $post]);
     }
 
     public function deletePost($id){
+        if(!$this->auth->isAuthenticated()){
+            $this->redirect('/admin');
+        }
+
         $this->postRepository->deletePost((int)$id);
         $_SESSION['success'] = "Post deleted successfully";
         return $this->redirect('/admin/post/manage');
