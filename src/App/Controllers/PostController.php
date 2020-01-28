@@ -50,7 +50,13 @@ class PostController extends BaseRequestController
         }else{
             $this->redirect('/admin/post/create');
         }
+    }
 
+
+    public function deletePost($id){
+        $this->postRepository->deletePost((int)$id);
+        $_SESSION['success'] = "Post deleted successfully";
+        return $this->redirect('/admin/post/manage');
     }
 
 

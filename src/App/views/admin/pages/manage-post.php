@@ -30,8 +30,8 @@ require 'navbar.php';
                                 <td><?=substr($post['body'],0,200).'...'?></td>
                                 <td>
                                     <div class="btn btn-group btn-group-sm">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
+                                        <a href="<?='/admin/post/edit/'.$post['id']?>" class="btn btn-primary">Edit</a>
+                                        <a href="<?='/admin/post/delete/'.$post['id']?>" class="btn btn-danger">Delete</a>
                                     </div>
                                 </td>
                             </tr>

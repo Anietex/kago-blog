@@ -26,4 +26,8 @@ class PostRepository extends Database
     public function getAllPosts(){
         return $this->selectMany('posts');
     }
+
+    public function deletePost($id){
+        return $this->delete('posts', $id);
+    }
 }

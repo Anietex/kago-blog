@@ -52,7 +52,8 @@ class Database
 
     }
 
-    public function delete(){
-
+    public function delete($table, $id){
+        $stmt = $this->DB->prepare("DELETE from $table WHERE id =?");
+       return $stmt->execute([$id]);
     }
 }
