@@ -9,6 +9,8 @@ class PublicController  extends BaseRequestController
 
     public function home(){
 
-        $this->loadView('index');
+        $this->loadView('index', [
+            "title" => "Home - Kago Blog"
+        ]);
     }
 }
