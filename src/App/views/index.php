@@ -1,6 +1,4 @@
 <?php require 'partials/header.php'; ?>
-
-
     <main class="main">
         <div class="site-preview-intro">
             <div class="container">
@@ -11,7 +9,6 @@
                 </div>
             </div>
         </div>
-
         <div class="site-preview-choices">
             <div class="container">
                 <div class="row">
@@ -120,8 +117,4 @@
             </div>
         </div>
     </main>
-
-
-
-
 <?php require 'partials/footer.php'; ?>
