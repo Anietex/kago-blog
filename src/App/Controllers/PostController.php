@@ -14,4 +14,9 @@ class PostController extends BaseRequestController
 
         $this->loadView('admin/pages/create-post');
     }
+
+    public function showManagePost(){
+        $this->loadView('admin/pages/manage-post');
+
+    }
 }
