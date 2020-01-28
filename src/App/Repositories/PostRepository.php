@@ -22,4 +22,8 @@ class PostRepository extends Database
 
         return $this->create('posts', $data);
     }
+
+    public function getAllPosts(){
+        return $this->selectMany('posts');
+    }
 }

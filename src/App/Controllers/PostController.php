@@ -19,11 +19,14 @@ class PostController extends BaseRequestController
 
     public function showCreatePost(){
 
+
         $this->loadView('admin/pages/create-post');
     }
 
     public function showManagePost(){
-        $this->loadView('admin/pages/manage-post');
+
+        $data['posts'] = $this->postRepository->getAllPosts();
+        $this->loadView('admin/pages/manage-post', $data);
 
     }
 

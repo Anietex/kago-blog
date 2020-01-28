@@ -2,7 +2,6 @@
 require 'header.php';
 require 'navbar.php';
 ?>
-
 <div class="container">
     <div class="page-title">
         <span>Manage post</span>
@@ -23,10 +22,12 @@ require 'navbar.php';
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $sn = 1;?>
+                            <?php foreach ($posts as $post){ ?>
                             <tr>
-                                <td>1</td>
-                                <td>This is sample title for a blog post</td>
-                                <td>This is sample body  for a blog post which is going to be cutoff..</td>
+                                <td><?=$sn++?></td>
+                                <td><?=$post['title']?></td>
+                                <td><?=substr($post['body'],0,200).'...'?></td>
                                 <td>
                                     <div class="btn btn-group btn-group-sm">
                                         <button class="btn btn-primary">Edit</button>
@@ -34,6 +35,7 @@ require 'navbar.php';
                                     </div>
                                 </td>
                             </tr>
+                            <?php }; ?>
                             </tbody>
                         </table>
                     </div>
