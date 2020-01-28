@@ -3,6 +3,8 @@
 use Kago\Core\Router\Route;
 
 Route::get('/','Kago\App\Controllers\PublicController@home');
+Route::get('/post/:id/:slug','Kago\App\Controllers\PublicController@showPost');
+
 Route::get('/admin','Kago\App\Controllers\AdminController@showLogin');
 Route::post('/admin/login','Kago\App\Controllers\AdminController@login');
 

@@ -25,4 +25,14 @@ class PublicController  extends BaseRequestController
             "posts" => $posts
         ]);
     }
+
+
+    public function showPost($id){
+
+        $post = $this->postRepository->getPostById($id);
+        $this->loadView('post', [
+            'post' => $post,
+            'title' => $post['title'].' - Kago'
+        ]);
+    }
 }
