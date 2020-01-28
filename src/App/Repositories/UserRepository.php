@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Kago\App\Repository;
+namespace Kago\App\Repositories;
 
 
 use Kago\Core\Database\Database;
@@ -12,11 +12,11 @@ class UserRepository extends Database
 
 
     public function getUserById($id){
-        return $this->selectOne('user','id = ?', $id,'*');
+        return $this->selectOne('users','id = ?', [$id],'*');
     }
 
     public function getUserByEmail($email){
-        return $this->selectOne('user','email = ?', $email,'*');
+        return $this->selectOne('users','WHERE email = ?', [$email],'*');
 
     }
 }

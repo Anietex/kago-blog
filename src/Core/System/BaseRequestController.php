@@ -15,4 +15,9 @@ abstract class BaseRequestController extends Config
         header('Content-Type:text/json');
         print json_encode($data);
     }
+
+
+    public function redirect($route){
+        header('Location:'.$route);
+    }
 }

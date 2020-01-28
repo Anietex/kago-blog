@@ -4,7 +4,7 @@
 namespace Kago\App\Utils;
 
 
-use Kago\App\Repository\UserRepository;
+use Kago\App\Repositories\UserRepository;
 
 class Auth
 {
@@ -33,8 +33,7 @@ class Auth
 
     public function loginUser(string $email, string $password){
 
-        $user = $this->userRepository->getUserByEmail($email);
-
+        $user = (object)$this->userRepository->getUserByEmail($email);
         if($user){
              if(password_verify($password,$user->password)){
                  $_SESSION['email'] = $email;

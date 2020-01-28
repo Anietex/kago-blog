@@ -9,7 +9,7 @@
                     <h4>Admin Login</h4>
                 </div>
                 <div class="card-body">
-                   <form action="/admin/post/create" method="post">
+                   <form action="/admin/login" method="post">
 
                        <div class="form-group">
                            <label id="email">Email</label>
